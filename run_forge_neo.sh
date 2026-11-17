@@ -14,6 +14,13 @@ CIVITAI_API_KEY="${CIVITAI_API_KEY:-916ff2c247a9be5f8f3b0d3974af7863}"
 HF_TOKEN="${HF_TOKEN:-}"
 
 # ----------------------------------------------------------
+# Fix Error #2 & #3: Reset MPLBACKEND bawaan Jupyter/Colab
+# (Mencegah crash 'module://matplotlib_inline.backend_inline'
+#  saat loading ControlNet dan SD-Hub)
+# ----------------------------------------------------------
+export MPLBACKEND="Agg"
+
+# ----------------------------------------------------------
 # 1. Dependensi sistem
 # ----------------------------------------------------------
 echo "🔍 [1/5] Mengecek dependensi sistem & uv..."
@@ -104,7 +111,6 @@ fi
 # ----------------------------------------------------------
 # 4. Download model (dari config/models/*.txt)
 # ----------------------------------------------------------
-# Nama file list -> folder tujuan di dalam WebUI
 model_dir_for() {
     case "$1" in
         checkpoints)  echo "$WEBUI_DIR/models/Stable-diffusion" ;;
@@ -118,7 +124,6 @@ model_dir_for() {
     esac
 }
 
-# Resolve link Civitai (halaman model / API) -> direct link + token + nama file asli
 resolve_url() {
     python3 - "$1" "$CIVITAI_API_KEY" "$2" << 'PYEOF'
 import sys, re, json, urllib.request
@@ -207,7 +212,6 @@ for list in "$CONFIG_DIR"/models/*.txt; do
     done <<< "$entries"
 done
 
-# Link tambahan via variabel (opsional, pisah koma)
 add_from_env() {
     local urls="$1" dest="$2"
     [ -z "$urls" ] && return 0
@@ -224,8 +228,25 @@ add_from_env "${VAE_URLS:-}"  "$(model_dir_for vae)"
 
 # ----------------------------------------------------------
 # 5. Jalankan WebUI
+# - Fix Error #1: --skip-python-version-check
+# - Fix Error #4: Langsung teruskan flags ke webui.sh (dan export COMMANDLINE_ARGS)
+#   agar --share selalu terbaca dan menghasilkan link *.gradio.live
 # ----------------------------------------------------------
 echo "🚀 [5/5] Menjalankan WebUI Forge Neo..."
-COMMANDLINE_ARGS="--uv --share --enable-insecure-extension-access --always-offload-from-vram ${EXTRA_ARGS:-}"
-echo "export COMMANDLINE_ARGS=\"$COMMANDLINE_ARGS\"" > webui-user.sh
-bash webui.sh -f
+LAUNCH_ARGS=(
+    --uv
+    --share
+    --enable-insecure-extension-access
+    --always-offload-from-vram
+    --skip-python-version-check
+)
+if [ -n "${EXTRA_ARGS:-}" ]; then
+    # shellcheck disable=SC2206
+    LAUNCH_ARGS+=(${EXTRA_ARGS})
+fi
+
+export COMMANDLINE_ARGS="${LAUNCH_ARGS[*]}"
+echo "export MPLBACKEND=\"Agg\"" > webui-user.sh
+echo "export COMMANDLINE_ARGS=\"$COMMANDLINE_ARGS\"" >> webui-user.sh
+
+bash webui.sh -f "${LAUNCH_ARGS[@]}"
