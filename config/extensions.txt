@@ -1,0 +1,7 @@
+# Daftar ekstensi Forge Neo
+# Format per baris:  URL_GIT  [branch]
+# Hapus / beri tanda # untuk menonaktifkan. Tambah baris baru untuk ekstensi lain.
+
+https://github.com/gutris1/sd-hub.git
+https://github.com/eduardoabreu81/moss-image-forge-neo.git
+# https://github.com/GumGum10/forge-anima-3.8B.git

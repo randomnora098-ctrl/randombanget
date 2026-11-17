@@ -1,0 +1,3 @@
+# LoRA -> models/Lora
+# Format per baris:  URL  [nama_file_opsional]
+# Contoh Civitai: https://civitai.com/models/123456?modelVersionId=654321

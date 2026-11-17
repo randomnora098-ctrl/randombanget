@@ -1,0 +1,4 @@
+# Upscaler (ESRGAN) -> models/ESRGAN
+# Format per baris:  URL  [nama_file_opsional]
+
+# https://huggingface.co/lokCX/4x-Ultrasharp/resolve/main/4x-UltraSharp.pth

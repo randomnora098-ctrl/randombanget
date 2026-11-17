@@ -1,0 +1,8 @@
+# VAE -> models/VAE
+# Format per baris:  URL  [nama_file_opsional]
+
+# Anima 2B
+# https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors
+
+# MOSS-Image & FLUX.2-Klein
+# https://huggingface.co/Comfy-Org/MOSS-Image/resolve/main/vae/flux2-vae.safetensors

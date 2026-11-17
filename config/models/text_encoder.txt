@@ -1,0 +1,11 @@
+# Text encoder -> models/text_encoder
+# Format per baris:  URL  [nama_file_opsional]
+
+# Anima 2B
+# https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors
+
+# MOSS-Image
+# https://huggingface.co/Comfy-Org/MOSS-Image/resolve/main/text_encoders/qwen3.5_9b_int8_convrot.safetensors
+
+# FLUX.2-Klein 4B
+# https://huggingface.co/Comfy-Org/Flux-2-Klein-4B/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors

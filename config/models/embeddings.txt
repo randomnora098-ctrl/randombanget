@@ -1,0 +1,2 @@
+# Embeddings / Textual Inversion -> embeddings/
+# Format per baris:  URL  [nama_file_opsional]

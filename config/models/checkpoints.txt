@@ -1,0 +1,17 @@
+# Checkpoint / diffusion model -> models/Stable-diffusion
+# Format per baris:  URL  [nama_file_opsional]
+# Link Civitai boleh link halaman (civitai.com/models/123?modelVersionId=456), token otomatis.
+# Beri tanda # untuk menonaktifkan.
+
+# --- 1 file (tanpa VAE / text encoder terpisah) ---
+https://huggingface.co/SeeSee21/Z-Image-Turbo-AIO/resolve/main/z-image-turbo-fp8-aio.safetensors
+# https://huggingface.co/bluepen5805/anima_pencil-XL/resolve/main/anima_pencil-XL_v500.safetensors
+
+# --- Anima 2B (butuh qwen_3_06b_base + qwen_image_vae) ---
+# https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-base-v1.0.safetensors
+
+# --- MOSS-Image INT8 (butuh qwen3.5_9b_int8 + flux2-vae) ---
+# https://huggingface.co/Comfy-Org/MOSS-Image/resolve/main/diffusion_models/moss_image_sft_int8_convrot.safetensors
+
+# --- FLUX.2-Klein 4B (butuh qwen_3_4b + flux2-vae) ---
+# https://huggingface.co/Comfy-Org/Flux-2-Klein-4B/resolve/main/split_files/diffusion_models/flux-2-klein-4b.safetensors
